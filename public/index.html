@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TodoApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<h1>To-Do List</h1>
+
+<div ng-controller="TodoController">
+    <input ng-model="name" placeholder="Task"/>
+    <button ng-click="newTask()">
+        New Task
+    </button>
+    <button ng-click="updateTask()">
+        Update Task
+    </button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>{{$index}}</td>
+                <td>{{task.name}}</td>
+                <td>
+                    <button ng-click="deleteTask($index)">
+                        Delete Task
+                    </button>
+                    <button ng-click="selectTask($index)">
+                        Edit Task
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
