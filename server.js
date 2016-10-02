@@ -1,28 +1,16 @@
-/**
- * Created by Dustin on 9/29/2016.
- */
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
-app.get('/task/:name', createTask);
-app.get('/tasks', getAllTasks);
 
-var tasks = [];
+require ("./test/app.js")(app);
 
-function getAllTasks(req, res) {
-    res.send(tasks);
-}
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
-function createTask(req, res) {
-    var name = req.params['name'];
-
-    var task = {
-        name: name
-    };
-
-    tasks.push(task);
-    res.send(tasks);
-}
-
-app.listen(3000);
+app.listen(port, ipaddress);
