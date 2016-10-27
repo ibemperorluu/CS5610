@@ -7,14 +7,12 @@ body {
     padding-bottom: 70px;
 }
 
-.verticalLine {
-    width:1px;
-    background-color: black;
-    left: 33%;
-    position: absolute;
-    z-index: 5;
-    top:0;
-    bottom: 0;
+.v-divider {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid gray;
 }
 
 .templates-websites-navbar .glyphicon {
