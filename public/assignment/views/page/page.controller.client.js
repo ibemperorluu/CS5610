@@ -11,7 +11,11 @@
         vm.websiteId = parseInt($routeParams["wid"]);
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
         }
 
         init();
@@ -21,14 +25,31 @@
         var vm = this;
         vm.userId = parseInt($routeParams["uid"]);
         vm.websiteId = parseInt($routeParams["wid"]);
-        vm.pageId = parseInt($routeParams["pid"]);
         vm.createPage = createPage;
 
-        function createPage(page) {
-            page._id = (new Date()).getTime();
-            page.websiteId = vm.websiteId;
-            PageService.createPage(page);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+        function init() {
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
+        }
+
+        init();
+
+        function createPage(name, description) {
+            var page = {
+                _id: (new Date()).getTime(),
+                name: name,
+                websiteId: vm.websiteId,
+                description: description
+            };
+
+            PageService
+                .createPage(vm.websiteId, page)
+                .success(function () {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                });
         }
     }
 
@@ -40,25 +61,29 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        var page = PageService.findPageById(vm.pageId);
-
-        if (page != null) {
-            vm.page = page;
-        }
-
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
+
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page = page;
+                });
         }
 
         init();
 
-        function updatePage(page) {
-            PageService.updatePage(page);
+        function updatePage() {
+            PageService.updatePage(vm.page);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
 
-        function deletePage(pageId) {
-            PageService.deletePage(pageId);
+        function deletePage() {
+            PageService.deletePage(vm.page);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
     }

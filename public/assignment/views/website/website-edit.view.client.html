@@ -16,7 +16,7 @@
                 <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left"></a>
             </p>
             <p class="navbar-text pull-right" style="margin-right: 0px">
-                <a ng-click="model.updateWebsite(model.website)" class="glyphicon glyphicon-ok"></a>
+                <a ng-click="model.updateWebsite()" class="glyphicon glyphicon-ok"></a>
             </p>
             <div class="navbar-header">
                 <a class="navbar-brand profile-websites-navbar-text">Edit Website</a>
@@ -53,7 +53,7 @@
                 <textarea ng-model="model.website.description" class="form-control" rows="5"></textarea>
             </div>
             <a class="btn btn-danger  btn-block"
-               ng-click="model.deleteWebsite(model.website._id)">Delete</a>
+               ng-click="model.deleteWebsite()">Delete</a>
         </form>
     </div>
 </div>

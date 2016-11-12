@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#/user/{{model.user._id}}" class="glyphicon glyphicon-ok"></a>
+            <a ng-click="model.updateUser()" class="glyphicon glyphicon-ok"></a>
         </p>
         <div class="navbar-header">
             <a class="navbar-brand profile-websites-navbar-text">Profile</a>
@@ -9,7 +9,14 @@
     </div>
 </nav>
 
+
 <div class="container">
+    <div ng-show="model.success" class="alert alert-success" role="alert">
+        {{model.success}}
+    </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="username">Username</label>
@@ -17,7 +24,8 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="someone@abc.com">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email"
+                   placeholder="someone@abc.com">
         </div>
         <div class="form-group">
             <label for="first-name">First Name</label>
