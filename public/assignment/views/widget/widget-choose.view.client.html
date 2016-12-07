@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-left" style="margin-left: 0px">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
                class="glyphicon glyphicon-chevron-left"></a>
         </p>
         <div class="navbar-header">
@@ -13,17 +13,27 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a ng-click="model.createWidget('Header')">
+            <a ng-click="model.createWidget('header')">
                 Header
             </a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.createWidget('Image')">
+            <a ng-click="model.createWidget('html')">
+                HTML
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a ng-click="model.createWidget('input')">
+                Text Input
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a ng-click="model.createWidget('image')">
                 Image
             </a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.createWidget('YouTube')">
+            <a ng-click="model.createWidget('youtube')">
                 YouTube
             </a>
         </li>
@@ -33,7 +43,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right" style="margin-right: 0px">
-            <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user"></a>
+            <a href="#/user/{{model.uid}}" class="glyphicon glyphicon-user"></a>
         </p>
     </div>
 </nav>

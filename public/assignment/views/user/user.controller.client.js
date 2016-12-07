@@ -44,12 +44,12 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
-        var userId = parseInt($routeParams["uid"]);
+        var userId = $routeParams["uid"];
         vm.updateUser = updateUser;
 
         function init() {
             UserService
-                .findUserById(userId)
+                .findUserById(vm.uid)
                 .success(function (user) {
                     if (user != '0') {
                         vm.user = user;

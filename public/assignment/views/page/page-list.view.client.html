@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-left" style="margin-left: 0px">
-            <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left"></a>
+            <a href="#/user/{{model.uid}}/website" class="glyphicon glyphicon-chevron-left"></a>
         </p>
         <p class="navbar-text pull-right" style="margin-right: 0px">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="glyphicon glyphicon-plus"></a>
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/new" class="glyphicon glyphicon-plus"></a>
         </p>
         <div class="navbar-header">
             <a class="navbar-brand profile-websites-navbar-text">Pages</a>
@@ -15,11 +15,11 @@
 <div ng-repeat="page in model.pages" class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">
                 {{page.name}}
             </a>
             <div class="pull-right">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </div>
@@ -30,7 +30,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user"></a>
+            <a href="#/user/{{model.uid}}" class="glyphicon glyphicon-user"></a>
         </p>
     </div>
 </nav>

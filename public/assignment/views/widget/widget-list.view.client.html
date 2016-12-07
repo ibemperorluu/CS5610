@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-left" style="margin-left: 0px">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page"
                class="glyphicon glyphicon-chevron-left"></a>
         </p>
         <p class="navbar-text pull-right" style="margin-right: 0px">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"
                class="glyphicon glyphicon-plus"></a>
         </p>
         <div class="navbar-header">
@@ -15,11 +15,11 @@
 </nav>
 
 <div class="container-fluid" sortable>
-    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets" class="jga-widget">
+    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets | orderBy: 'priority'">
         <div ng-switch="widget.size" ng-switch-when="HEADER">
             <div class='btn-toolbar pull-right'>
                 <div class='btn-group'>
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
                        class='glyphicon glyphicon-cog'></a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div ng-bind-html="model.checkSafeHtml(widget)"></div>
             <div class='btn-toolbar pull-right'>
                 <div class='btn-group'>
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
                        class='glyphicon glyphicon-cog'></a>
                 </div>
             </div>
@@ -45,17 +45,17 @@
         <div ng-switch-when="IMAGE">
             <div class='btn-toolbar pull-right'>
                 <div class='btn-group'>
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
                        class='glyphicon glyphicon-cog'></a>
                 </div>
             </div>
             <img class="img-responsive" ng-src="{{widget.url}}" width="{{widget.width}}"/>
         </div>
 
-        <div ng-switch-when="YOUTUBE">
+        <div ng-switch-when="YOUTUBE" class="youtube-widget">
             <div class='btn-toolbar pull-right'>
                 <div class='btn-group'>
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
                        class='glyphicon glyphicon-cog'></a>
                 </div>
             </div>
@@ -68,6 +68,15 @@
             </div>
         </div>
 
+        <div ng-switch-when="INPUT">
+            <div ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'], ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'], ['indent','outdent'],['html']]"></div>
+            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                   placeholder="{{widget.placeholder}}" class="form-control"/>
+            <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                      rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                      class="form-control">{{widget.text}}</textarea>
+        </div>
+
         <div ng-switch-default>
             Error rendering your widget. Please try again.
         </div>
@@ -77,7 +86,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right" style="margin-right: 0px">
-            <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user"></a>
+            <a href="#/user/{{model.uid}}" class="glyphicon glyphicon-user"></a>
         </p>
     </div>
 </nav>

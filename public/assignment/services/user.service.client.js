@@ -22,8 +22,8 @@
             return $http.post("/api/user", user);
         }
 
-        function findUserById(userId) {
-            var url = "/api/user/" + userId;
+        function findUserById(id) {
+            var url = "/api/user/" + id;
             return $http.get(url);
         }
 
@@ -43,7 +43,7 @@
         }
 
         function deleteUser(userId) {
-            var url = "/api/user/" + userId;
+            var url = "/api/user/" + uid;
             return $http.delete(url);
         }
     }

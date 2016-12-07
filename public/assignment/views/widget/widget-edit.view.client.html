@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <p class="navbar-text pull-left" style="margin-left: 0px">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page"
                class="glyphicon glyphicon-chevron-left"></a>
         </p>
         <p class="navbar-text pull-right" style="margin-right: 0px">
@@ -14,22 +14,12 @@
     </div>
 </nav>
 
-<div ng-switch="model.widget.widgetType">
-    <div ng-switch-when="HEADER">
-        <ng-include src="'views/widget/widget-heading.view.client.html'">
-    </div>
-    <div ng-switch-when="IMAGE">
-        <ng-include src="'views/widget/widget-image.view.client.html'">
-    </div>
-    <div ng-switch-when="YOUTUBE">
-        <ng-include src="'views/widget/widget-youtube.view.client.html'">
-    </div>
-</div>
+<div ng-include="'views/widget/widget-' + model.widget.type + '.view.client.html'"></div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right" style="margin-right: 0px">
-            <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user"></a>
+            <a href="#/user/{{model.uid}}" class="glyphicon glyphicon-user"></a>
         </p>
     </div>
 </nav>

@@ -13,18 +13,18 @@
         };
         return api;
 
-        function createPage(websiteId, page) {
-            var url = "/api/website/" + websiteId + "/page";
+        function createPage(wid, page) {
+            var url = "/api/website/" + wid + "/page";
             return $http.post(url, page);
         }
 
-        function findAllPagesForWebsite(websiteId) {
-            var url = "/api/website/" + websiteId + "/page";
+        function findAllPagesForWebsite(wid) {
+            var url = "/api/website/" + wid + "/page";
             return $http.get(url);
         }
 
-        function findPageById(pageId) {
-            var url = "/api/page/" + pageId;
+        function findPageById(pid) {
+            var url = "/api/page/" + pid;
             return $http.get(url);
         }
 
@@ -33,7 +33,7 @@
             return $http.put(url, page);
         }
 
-        function deletePage(pageId) {
+        function deletePage(pid) {
             var url = "/api/page/" + pid;
             return $http.delete(url);
         }

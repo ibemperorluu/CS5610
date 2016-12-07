@@ -22,14 +22,18 @@
 
     <form action="/api/uploads" method="post" enctype="multipart/form-data">
         <input name="myFile" type="file" class="form-control"/>
+        <input name="name" value="{{model.widget.name}}" style="display: none"/>
+        <input name="text" value="{{model.widget.text}}" style="display: none"/>
         <input name="width" value="{{model.widget.width}}" style="display: none"/>
-        <input name="userId" value="{{model.userId}}" style="display: none"/>
-        <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
-        <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+        <input name="userId" value="{{model.uid}}" style="display: none"/>
+        <input name="websiteId" value="{{model.wid}}" style="display: none"/>
+        <input name="pageId" value="{{model.pid}}" style="display: none"/>
         <input name="widgetId" value="{{model.widget._id}}" style="display: none"/>
         <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
     </form>
 
-    <a class="btn btn-danger  btn-block"
+    <a class="btn btn-danger btn-block"
        ng-click="model.deleteWidget()">Delete</a>
+    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{model.wgid}}/flickr"
+       class="btn btn-primary btn-block">Flickr</a>
 </div>

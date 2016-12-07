@@ -14,18 +14,18 @@
         };
         return api;
 
-        function createWidget(pageId, widget) {
-            var url = "/api/page/" + pageId + "/widget";
+        function createWidget(pid, widget) {
+            var url = "/api/page/" + pid + "/widget";
             return $http.post(url, widget);
         }
 
-        function findAllWidgetsForPage(pageId) {
-            var url = "/api/page/" + pageId + "/widget";
+        function findAllWidgetsForPage(pid) {
+            var url = "/api/page/" + pid + "/widget";
             return $http.get(url);
         }
 
-        function findWidgetById(widgetId) {
-            var url = "/api/widget/" + widgetId;
+        function findWidgetById(wgid) {
+            var url = "/api/widget/" + wgid;
             return $http.get(url);
         }
 
@@ -34,13 +34,13 @@
             return $http.put(url, widget);
         }
 
-        function deleteWidget(widgetId) {
-            var url = "/api/widget/" + widgetId;
+        function deleteWidget(wgid) {
+            var url = "/api/widget/" + wgid;
             return $http.delete(url);
         }
 
-        function sort(pageId, start, end) {
-            var url = "/api/page/" + pageId + "/widget?initial=" + start + "&final=" + end;
+        function sort(pid, start, end) {
+            var url = "/api/page/" + pid + "/widget?initial=" + start + "&final=" + end;
             return $http.put(url);
         }
     }
