@@ -15,6 +15,9 @@
                 .findAllPagesForWebsite(vm.wid)
                 .success(function (pages) {
                     vm.pages = pages;
+                })
+                .error(function () {
+
                 });
         }
 
@@ -43,11 +46,18 @@
                 title: title
             };
 
-            PageService
-                .createPage(vm.wid, page)
-                .success(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
-                });
+            if (page.name === undefined || page.name.length < 1) {
+                vm.error = "Name cannot be blank.";
+            } else {
+                PageService
+                    .createPage(vm.wid, page)
+                    .success(function () {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                    })
+                    .error(function (error) {
+
+                    });
+            }
         }
     }
 
@@ -76,13 +86,25 @@
         init();
 
         function updatePage() {
-            PageService.updatePage(vm.page);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+            PageService
+                .updatePage(vm.page)
+                .success(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                })
+                .error(function () {
+
+                });
         }
 
         function deletePage() {
-            PageService.deletePage(vm.pid);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+            PageService
+                .deletePage(vm.pid)
+                .success(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                })
+                .error(function () {
+
+                });
         }
     }
 })();

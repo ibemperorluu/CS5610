@@ -6,11 +6,16 @@
     function UserService($http) {
         var api = {
             createUser: createUser,
+            findUser: findUser,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            logout: logout,
+            register: register,
+            checkLogin: checkLogin
         };
         return api;
 
@@ -20,6 +25,11 @@
                 password: password
             };
             return $http.post("/api/user", user);
+        }
+
+        function findUser() {
+            var url = "/api/user";
+            return $http.get(url);
         }
 
         function findUserById(id) {
@@ -45,6 +55,26 @@
         function deleteUser(userId) {
             var url = "/api/user/" + uid;
             return $http.delete(url);
+        }
+
+        function login(user) {
+            var url = "/api/login";
+            return $http.post(url, user);
+        }
+
+        function logout() {
+            var url = "/api/logout";
+            return $http.post(url);
+        }
+
+        function register(user) {
+            var url = "/api/register";
+            return $http.post(url, user);
+        }
+
+        function checkLogin() {
+            var url = "/api/loggedin";
+            return $http.get(url);
         }
     }
 })();

@@ -2,15 +2,17 @@ module.exports = function () {
 
     var mongoose = require("mongoose");
     var UserSchema = require("./user.schema.server")();
-    var UserModel  = mongoose.model("UserModel", UserSchema);
+    var UserModel = mongoose.model("UserModel", UserSchema);
 
     var api = {
         createUser: createUser,
         findUserById: findUserById,
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
+        findUserByFacebookId: findUserByFacebookId,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        setModel: setModel
     };
     return api;
 
@@ -33,6 +35,10 @@ module.exports = function () {
         return UserModel.findOne({username: username});
     }
 
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId});
+    }
+
     function updateUser(userId, user) {
         return UserModel
             .update(
@@ -49,5 +55,9 @@ module.exports = function () {
     function deleteUser(userId) {
         return UserModel
             .remove({_id: uid});
+    }
+
+    function setModel(_model) {
+        model = _model;
     }
 };

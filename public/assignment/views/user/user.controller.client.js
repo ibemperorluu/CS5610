@@ -30,15 +30,31 @@
         var vm = this;
         vm.register = register;
 
-        function register(username, password) {
-            UserService
-                .createUser(username, password)
-                .success(function (user) {
-                    $location.url("/user/" + user._id);
-                })
-                .error(function (error) {
-                    vm.alert = error;
-                })
+        function register(username, password, verifyPassword) {
+            if (password != verifyPassword) {
+                vm.error = "Invalid password.";
+            } else {
+                UserService
+                    .findUserByUsername(username)
+                    .success(function (user) {
+                        if (user === '0') {
+                            UserService
+                                .createUser(username, password)
+                                .success(function (user) {
+                                    $location.url("/user/" + user._id);
+                                })
+                                .error(function (error) {
+                                    vm.alert = error;
+                                });
+                        } else {
+                            vm.error = "This username already exists! Try again.";
+                        }
+                    })
+                    .error(function (error) {
+                        console.log(error);
+                    });
+
+            }
         }
     }
 
@@ -46,6 +62,7 @@
         var vm = this;
         var userId = $routeParams["uid"];
         vm.updateUser = updateUser;
+        vm.logout = logout;
 
         function init() {
             UserService
@@ -63,7 +80,27 @@
         init();
 
         function updateUser() {
-            UserService.updateUser(vm.user);
+            UserService
+                .updateUser(vm.user)
+                .success(function (user) {
+                    if (user != '0') {
+                        $location.url("/user/" + user._id);
+                    }
+                })
+                .error(function (error) {
+
+                });
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function () {
+
+                });
         }
     }
 })();
